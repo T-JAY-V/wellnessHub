@@ -1,0 +1,1687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WellnessHub - Your Path to Health and Wellness</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" />
+
+    <style id="app-style">
+        /* ---------- CSS Variables ---------- */
+        :root {
+        --primary: #22c55e;
+        --primary-600: #16a34a;
+        --primary-700: #15803d;
+        --secondary: #0ea5e9;
+        --secondary-600: #0284c7;
+
+        --bg: #ffffff;
+        --surface: #f8fafc; /* section bg */
+        --card: #ffffff; /* cards, header */
+        --text: #0f172a;
+        --muted: #64748b;
+        --border: #e5e7eb;
+        --shadow: 0 10px 30px rgba(2, 6, 23, 0.08);
+        }
+        html.dark {
+        --bg: #0b1220;
+        --surface: #0f172a;
+        --card: #0b1529;
+        --text: #e5e7eb;
+        --muted: #94a3b8;
+        --border: #1f2937;
+        --shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        :root {
+        --form-bg: #ffffff;
+        --text-color: #0f172a;
+        }
+
+        /* ---------- Base / Resets ---------- */
+        * { 
+            box-sizing: border-box; 
+        }
+        html {
+            scroll-behavior: smooth; 
+        }
+        body {
+        margin: 0;
+        font-family: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+        transition: background 300ms, color 300ms, border-color 300ms;
+        }
+        img { 
+            display: block; 
+            max-width: 100%; 
+            height: auto; 
+        }
+        a {
+            color: inherit; 
+            text-decoration: none; 
+        }
+        .container {
+            width: min(1200px, 92%);
+            margin: 0 auto;
+        
+        }
+
+        /* ---------- Header & Navigation ---------- */
+        .header {
+            position: sticky; 
+            top: 0;
+            z-index: 1000;
+            background: var(--card);
+            border-bottom: 1px solid var(--border);
+            box-shadow: var(--shadow);
+        }
+        .header > .container {
+            display: grid;
+            grid-template-columns: auto 1fr auto auto; 
+            align-items: center;
+            gap: 1rem; padding: 0.75rem 0;
+        }
+        .header a.flex { 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 0.5rem; 
+            font-weight: 600; 
+        }
+        .header .fa-leaf { 
+            color: var(--primary); 
+            font-size: 1.25rem; }
+        .logo { 
+            font-size: 1.25rem; 
+        }
+
+        .nav { 
+            display: flex; 
+            gap: 1rem; 
+            justify-self: center; }
+        .nav a { 
+            padding: 0.5rem 0.75rem; 
+            border-radius: 10px; 
+            font-weight: 500; }
+        .nav a:hover { 
+            background: var(--surface); 
+        }
+
+        .icon-xl { 
+            font-size: 1.35rem; 
+        }
+
+        /* Search + Dark toggle cluster */
+        .search.bar { 
+            display: flex; 
+            align-items: center; 
+            gap: 0.75rem; 
+        }
+        .search { 
+            display: flex; 
+            align-items: center; 
+            gap: 0.5rem; 
+            background: var(--surface); 
+            border: 1px solid var(--border); 
+            border-radius: 999px; 
+            padding: 0.35rem 0.75rem; }
+        .search input { 
+            border: none; 
+            outline: none; 
+            background: transparent; 
+            color: var(--text); 
+            min-width: 140px; 
+            font-size: 0.95rem; 
+        }
+        .search .fa-search { 
+            color: var(--muted); 
+        }
+
+        #darkModeToggle, #mobileDarkModeToggle {
+            position: relative; 
+            width: 44px; 
+            height: 24px; 
+            border: 1px solid var(--border);
+            border-radius: 999px; 
+            background: var(--surface); 
+            cursor: pointer; 
+            padding: 0; 
+            outline: none;
+        }
+        #darkModeToggle .toggle-circle, #mobileDarkModeToggle .toggle-circle {
+            position: absolute; 
+            top: 2px; 
+            left: 2px; 
+            width: 20px; 
+            height: 20px; 
+            border-radius: 50%; 
+            background: var(--primary);
+            transition: left 280ms ease, background 280ms ease;
+        }
+        html.dark #darkModeToggle .toggle-circle, html.dark #mobileDarkModeToggle .toggle-circle { 
+            left: 22px; 
+            background: var(--secondary); 
+        }
+
+        #mobileMenuBtn { 
+            background: none; 
+            border: none; 
+            color: var(--text); 
+            display: none; 
+            font-size: 1.25rem;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            
+
+        }
+        
+       
+
+        /* ---------- Mobile Menu ---------- */
+        #mobileMenu {
+            display: grid; 
+            grid-template-rows: 0fr; 
+            overflow: hidden; 
+            transition: grid-template-rows 300ms ease; 
+            background: var(--card);
+            border-bottom: 1px solid var(--border);
+            
+        }
+        #mobileMenu.active { 
+            grid-template-rows: 1fr; 
+        }
+        #mobileMenu .mobile.nav { 
+            padding: 0.75rem; 
+            display: grid; 
+            gap: 0.75rem; 
+        }
+        #mobileMenu .mobile.nav a { 
+            padding: 0.6rem 0.75rem; 
+            border-radius: 10px; 
+        }
+        #mobileMenu .mobile.nav a:hover { 
+            background: var(--surface); 
+        }
+        .mobile-search { 
+            display: flex; 
+            align-items: center; 
+            gap: 0.5rem; 
+        }
+        .mobile-search .input { 
+            flex: 1; 
+            border: 1px solid var(--border); 
+            background: var(--surface); 
+            color: var(--text); 
+            border-radius: 10px; 
+            padding: 0.5rem 0.75rem; 
+        }
+        .mobile-dark-mode { 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            gap: 0.75rem; 
+        }
+
+        /* ---------- Sections ---------- */
+        section { 
+            padding: 4rem 0; 
+        }
+        section:nth-of-type(odd) { 
+            background: var(--surface); 
+        }
+
+        /* ---------- Hero ---------- */
+        #home .container { 
+            display: grid; 
+            grid-template-columns: 1.1fr 0.9fr; 
+            gap: 2rem; 
+            align-items: center; 
+        }
+        .hero-content h1 { 
+            font-size: clamp(2rem, 3.5vw, 3rem); 
+            line-height: 1.2; 
+            margin: 0 0 0.75rem; 
+        }
+        .hero-content p { 
+            margin: 0 0 1.25rem; color: var(--muted); 
+        }
+        .text-primary-DEFAULT { 
+            color: var(--primary); 
+        }
+        .btn { 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 0.5rem; 
+            background: var(--primary); color: #fff; 
+            border: none; 
+            border-radius: 12px; 
+            padding: 0.75rem 1.1rem; 
+            font-weight: 600; 
+            box-shadow: var(--shadow); 
+        }
+        .btn:hover { 
+            background: var(--primary-600); 
+        }
+
+        .hero-image { 
+            position: relative; 
+        }
+        .hero-image img { 
+            border-radius: 16px; 
+            box-shadow: var(--shadow); 
+            width: 100%; height: auto; 
+            object-fit: cover; 
+        }
+
+        /* ---------- Services ---------- */
+        #services .featured-services { 
+            text-align: center; 
+            max-width: 760px; 
+            margin: 0 auto 2rem; 
+        }
+        #services .featured-services h2 { 
+            font-size: clamp(1.6rem, 2.2vw, 2.2rem); 
+            margin: 0 0 0.4rem; 
+        }
+        #services .featured-services p { 
+            color: var(--muted); 
+            margin: 0; 
+        }
+
+        #services .grid { 
+            display: grid; 
+            grid-template-columns: repeat(4, 1fr); 
+            gap: 1.25rem; }
+        #services .grid > div { 
+            background: var(--card); 
+            border: 1px solid var(--border); 
+            border-radius: 14px; 
+            padding: 1.25rem; 
+            transition: transform 200ms, box-shadow 200ms;
+            box-shadow: var(--shadow); 
+        }
+        #services .grid > div:hover { transform: translateY(-4px); }
+        #services .grid i { font-size: 1.6rem; color: var(--primary); }
+        #services .grid h3 { margin: 0.8rem 0 0.4rem; font-size: 1.1rem; }
+        #services .grid p { margin: 0; color: var(--muted); }
+
+        /* ---------- Blog ---------- */
+        #blog .blog-tag { 
+            text-align: center; 
+            max-width: 760px; 
+            margin: 0 auto 2rem; 
+        }
+        #blog .blog-posts { 
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 1.25rem; }
+        #blog article { 
+            background: var(--card); 
+            border: 1px solid var(--border); 
+            border-radius: 14px; 
+            overflow: hidden; 
+            display: grid; 
+            grid-template-rows: 180px auto; 
+            transition: transform 220ms; 
+            box-shadow: var(--shadow); 
+        }
+        #blog article:hover { 
+            transform: translateY(-4px); 
+        }
+        #blog article img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+        }
+        #blog article .text { 
+            padding: 1rem; 
+            display: grid; 
+            gap: 0.5rem; 
+        }
+        #blog article span { 
+            font-size: 0.8rem; 
+            font-weight: 600; 
+            color: var(--secondary-600); 
+        }
+        #blog article h3 { 
+            margin: 0.1rem 0 0.2rem; 
+            font-size: 1.05rem; 
+        }
+        .line-clamp-2 { 
+            display: -webkit-box; 
+            overflow: hidden; 
+        }
+        .read-more { 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 0.4rem; 
+            font-weight: 600; 
+            color: var(--primary); 
+        }
+        .read-more i { 
+            font-size: 0.9rem; 
+        }
+        #blog .blog-posts > article .text p { 
+            color: var(--muted); 
+            margin: 0; 
+            font-size: 0.95rem; 
+        }
+        
+
+        /* ---------- Appointment ---------- */
+        #appointment { 
+            background: var(--surface); 
+        }
+        #appointment .hero { 
+            text-align: center; 
+            max-width: 760px; 
+            margin: 0 auto 2rem; 
+        }
+        #appointment .hero h1 { 
+            font-size: clamp(2rem, 3.5vw, 2.5rem); 
+            margin: 0 0 0.75rem; 
+        }
+        #appointment .hero p { 
+            color: var(--muted); 
+            margin: 0 0 1.25rem; 
+        }
+        #appointment .badge { 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 0.5rem; 
+            background: var(--primary); 
+            color: #fff; 
+            padding: 0.5rem 1rem; 
+            border-radius: 999px; 
+            font-weight: 600; 
+            margin-bottom: 1.5rem; 
+        }
+        #appointment .badge i { 
+            font-size: 1.2rem; 
+        }
+        #appointment .form-section { 
+            display: grid; 
+            grid-template-columns: 1fr; 
+            gap: 1.5rem; 
+        }
+        #appointment .form-container { 
+            background: var(--card); 
+            border: 1px solid var(--border); 
+            border-radius: 14px; 
+            padding: 1.25rem; 
+            box-shadow: var(--shadow); 
+        }
+        .hero {
+            background: linear-gradient(to right, #d0f0e0, #fef6e4);
+            padding: 5rem 1rem 3rem;
+            text-align: center;
+            margin-top: 60px;
+        }
+        .hero .badge {
+            display: inline-flex;
+            align-items: center;
+            background-color: #e6f4ea;
+            color: #166534;
+            border-radius: 50px;
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        .hero h1 { 
+            font-size: 2.5rem; 
+            margin: 1rem 0; 
+        }
+        .hero p { 
+            max-width: 600px; 
+            margin: 0 auto; 
+            font-size: 1.1rem; 
+        }
+
+        /* Form */
+        .form-section { padding: 3rem 1rem; }
+        .form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--surface);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+        h3 { font-size: 1.25rem; margin: 2rem 0 1rem; }
+        .form-row { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .form-group { flex: 1; display: flex; flex-direction: column; margin-bottom: 1.25rem; }
+        .form-group label { margin-bottom: 0.5rem; font-weight: 500; }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 0.75rem;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1rem;
+            background-color: var(--surface);
+            color: var(--text);
+
+        }
+        button[type="submit"] {
+            background: linear-gradient(to right, #4ade80, #16a34a);
+            color: white;
+            font-weight: bold;
+            padding: 1rem;
+            width: 100%;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        button:hover {
+            background: linear-gradient(to right, #22c55e, #15803d);
+        }
+        .terms { font-size: 0.85rem; text-align: center; margin-top: 1rem; color: #666; }
+        .form-group input[type="checkbox"] { 
+            width: auto; 
+            margin-right: 0.5rem; 
+        }
+        .invalid {
+            border-color: #e53e3e !important;
+            background: #fff0f0;
+        }
+        
+
+
+        /* ---------- Testimonials ---------- */
+        .testimonial-slider { 
+            position: relative; 
+            overflow: hidden; 
+            border-radius: 14px; 
+        }
+        #testimonialWrapper { 
+            display: flex; 
+            transition: transform 500ms ease; 
+        }
+        .testimonial-slide { 
+            flex: 0 0 100%; 
+            padding: 0.5rem; 
+        }
+        .testimonial-card, .testimonial-card2, .testimonial-card3 {
+            background: var(--card); 
+            border: 1px solid var(--border); 
+            border-radius: 14px; 
+            padding: 1.25rem; 
+            min-height: 220px; 
+            display: grid; 
+            gap: 0.75rem; 
+            box-shadow: var(--shadow);
+        }
+        .testimonial-stars { color: #f5b301; }
+        .testimonial-person { 
+            display: flex; 
+            align-items: center; 
+            gap: 0.75rem; 
+        }
+        .testimonial-person img { 
+            width: 44px; 
+            height: 44px; 
+            border-radius: 50%; 
+            object-fit: cover; 
+        }
+        .testimonial-info h4 { 
+            margin: 0; 
+            font-size: 1rem; 
+        }
+        .testimonial-info p { 
+            margin: 0; 
+            color: var(--muted); 
+            font-size: 0.9rem; 
+        }
+
+        .testimonial-nav { 
+            display: flex; 
+            justify-content: center; 
+            gap: 0.75rem; 
+            margin-top: 0.75rem; }
+        .testimonial-nav button { 
+            width: 40px; 
+            height: 40px; 
+            border-radius: 50%; 
+            border: 1px solid var(--border); 
+            background: var(--card); 
+            cursor: pointer; 
+            display: grid; 
+            place-items: center; 
+        }
+        .testimonial-nav button:hover { 
+            background: var(--surface); 
+        }
+
+        /* ---------- Contact ---------- */
+        #contact .contact-header { 
+            text-align: center; 
+            max-width: 760px; 
+            margin: 0 auto 2rem; 
+        }
+        #contact .grid { 
+            display: grid; 
+            grid-template-columns: 1.1fr 0.9fr; 
+            gap: 1.25rem; 
+        }
+
+        .contact-form { 
+            background: var(--card); 
+            border: 1px solid var(--border); 
+            border-radius: 14px; 
+            padding: 1.25rem; 
+            box-shadow: var(--shadow); 
+        }
+        .contact-form h3 { 
+            margin-top: 0; 
+        }
+        .mb-4 { 
+            margin-bottom: 1rem; 
+        }
+        label { 
+            display: block; 
+            font-weight: 600; 
+            margin-bottom: 0.4rem; 
+        }
+        .input, .textarea, .contact-form input[type="text"], .contact-form input[type="email"], .contact-form textarea {
+            width: 100%; 
+            border: 1px solid var(--border); 
+            background: var(--surface); 
+            color: var(--text); 
+            border-radius: 10px; 
+            padding: 0.7rem 0.9rem; 
+            font: inherit;
+        }
+        .contact-form button[type="submit"] { 
+            margin-top: 0.25rem; 
+        }
+        button, .btn, .newsletter-btn {
+            cursor: pointer; 
+            }
+
+        .section-fade { 
+            opacity: 0; 
+            transform: translateY(12px); 
+            transition: opacity 400ms ease, transform 400ms ease; 
+        }
+        .section-fade.visible { 
+            opacity: 1; 
+            transform: translateY(0); 
+        }
+
+        .contact-info { 
+            background: var(--card); 
+            border: 1px solid var(--border); 
+            border-radius: 14px; padding: 1.25rem; 
+            box-shadow: var(--shadow); 
+            display: grid; 
+            gap: 0.9rem; 
+        }
+        .contact-info > div { 
+            display: flex; 
+            align-items: flex-start; 
+            gap: 0.75rem; 
+        }
+        .contact-info i { 
+            color: var(--primary); 
+            font-size: 1.1rem; 
+            margin-top: 0.2rem; 
+        }
+
+        .map-container { 
+            height: 280px; 
+            border-radius: 14px; 
+            overflow: hidden; 
+            border: 1px solid var(--border); 
+        }
+        .w-full { width: 100%; }
+        .h-full { height: 100%; }
+
+        /* ---------- Footer ---------- */
+        footer { 
+            background: var(--card); 
+            border-top: 1px solid var(--border); 
+        }
+        footer .container > div:first-child { 
+            display: grid; 
+            grid-template-columns: repeat(4, 1fr); 
+            gap: 1.25rem; 
+            padding: 2rem 0 1rem; }
+        footer p { 
+            color: var(--muted); 
+        }
+
+        .social-icons { 
+            display: flex; 
+            align-items: center; 
+            gap: 0.6rem; 
+            margin-top: 0.75rem;
+
+        }
+        .social-icons a { 
+            width: 38px; 
+            height: 38px; 
+            display: grid; 
+            place-items: center; 
+            border: 1px solid var(--border); 
+            border-radius: 10px; 
+            background: var(--surface); 
+            transition: background 200ms, border-color 200ms;   
+        }
+        .social-icons a:hover { 
+            background: var(--primary); 
+            border-color: var(--primary-600); 
+        }
+
+        .quick-links, .service-links { 
+            list-style: none; 
+            padding: 0; 
+            margin: 0; 
+            display: grid; 
+            gap: 0.5rem; 
+        }
+        .footer-link { color: var(--text); }
+        .footer-link:hover { color: var(--primary); }
+
+        .newsletter-input { 
+            flex: 1; 
+            border: 1px solid var(--border); 
+            background: var(--surface); 
+            color: var(--text); 
+            border-radius: 10px; 
+            padding: 0.7rem 0.9rem; 
+        }
+        .newsletter-btn { 
+            margin-left: 0.5rem; 
+            background: var(--primary); 
+            color: #fff; 
+            border: none; 
+            border-radius: 10px; 
+            padding: 0.7rem 1rem; 
+            font-weight: 600; 
+        }
+        .newsletter-btn:hover { 
+            background: var(--primary-600); 
+        }
+
+        .policies { 
+            border-top: 1px solid var(--border); 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            gap: 1rem; padding: 1rem 0 2rem; 
+        }
+        .policies .footer-links 
+        { display: flex; 
+            align-items: center; 
+            gap: 0.9rem; 
+        }
+
+        /* ---------- Responsive ---------- */
+        @media (max-width: 1024px) {
+        #blog .blog-posts { grid-template-columns: repeat(2, 1fr); }
+        #services .grid { grid-template-columns: repeat(2, 1fr); }
+        #contact .grid { grid-template-columns: 1fr; }
+        #home .container { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 768px) {
+        .nav { 
+            display: none; 
+        }
+        #mobileMenuBtn { 
+            display: inline-grid; 
+            justify-self: end;
+            padding: 0.5rem;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 999px;
+
+        }
+        .header > .container { 
+            grid-template-columns: auto 1fr auto; 
+        }
+        .search.bar { 
+            display: none; 
+        }
+        #blog .blog-posts { 
+            grid-template-columns: 1fr; 
+        }
+        footer .container > div:first-child { 
+            grid-template-columns: 1fr 1fr; 
+            }
+        }
+        @media (max-width: 520px) {
+            footer .container > div:first-child { 
+                grid-template-columns: 1fr; 
+            }
+            .policies { 
+                flex-direction: column; 
+                align-items: flex-start; 
+            }
+        }
+        @media (min-width: 769px) {
+            #mobileMenu {
+                display: none !important;
+            }
+            
+            
+        }
+        @media (max-width: 400px) {
+            .hero-content h1 { 
+                font-size: 1.8rem; 
+            }
+            .hero-content p { 
+                font-size: 0.95rem; 
+            }
+            #home .container { 
+                grid-template-columns: 1fr; 
+            }
+        }
+        /* ---------- Login Gate ---------- */
+        body.gate-active {
+        overflow: hidden; 
+        }
+        /* Login Gate Styles */
+        .login-gate {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--surface);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        padding: 1rem;
+
+        }
+
+        .gate-content {
+        background: var(--card);
+        border-radius: 16px;
+        padding: 2rem;
+        width: 100%;
+        max-width: 400px;
+        box-shadow: var(--shadow);
+        text-align: center;
+        }
+        .gate-content .form-group {
+        display: flex;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        flex-direction: column;
+        margin-bottom: 1.25rem;
+        }
+        .gate-content .form-group input {
+        outline: none;
+        background: transparent;
+        color: var(--text); 
+        font-size: 1rem;
+        }
+        .gate-content .form-group input:focus {
+        border-color: var(--primary);
+        }
+        
+        .gate-header {
+        margin-bottom: 2rem;
+        }
+
+        .gate-header i {
+        font-size: 3rem;
+        color: var(--primary);
+        margin-bottom: 1rem;
+        }
+
+        .gate-header h1 {
+        margin: 0.5rem 0;
+        font-size: 1.75rem;
+        }
+
+        .gate-header p {
+        color: var(--muted);
+        margin: 0;
+        }
+
+        .gate-footer {
+        margin-top: 1.5rem;
+        font-size: 0.9rem;
+        }
+
+        .gate-footer a {
+        color: var(--primary);
+        font-weight: 600;
+        }
+
+        /* Hide main content when gate is active */
+        body.gate-active main,
+        body.gate-active footer,
+        body.gate-active .header {
+        display: none !important;
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="loginGate" class="login-gate">
+        <div class="gate-content">
+            <div class="gate-header">
+            <i class="fas fa-leaf"></i>
+            <h1>Welcome to WellnessHub</h1>
+            <p>Please sign in to access your wellness journey</p>
+            </div>
+            <form id="gateLoginForm">
+            <div class="form-group">
+                <label for="gateEmail">Email Address</label>
+                <input type="email" id="gateEmail" required placeholder="your@email.com">
+            </div>
+            <div class="form-group">
+                <label for="gatePassword">Password</label>
+                <input type="password" id="gatePassword" required placeholder="••••••••">
+            </div>
+            <button type="submit" class="btn btn-primary">Sign In</button>
+            <div class="gate-footer">
+                <p>Don't have an account? <a href="#" id="gateRegister">Register</a></p>
+                <p><a href="#" id="gateGuest">Continue as Guest</a></p>
+            </div>
+            </form>
+        </div>
+    </div>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+        <!-- Logo -->
+        <a href="#home" class="flex items-center">
+            <i class="fas fa-leaf"></i>
+            <span class="logo">WellnessHub</span>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="nav" aria-label="Main">
+            <a href="#home">Home</a>
+            <a href="#services">Services</a>
+            <a href="#blog">Blog</a>
+            <a href="#appointment">Appointment</a>
+            <a href="#contact">Contact</a>
+        </nav>
+
+        <!-- Search + Dark Mode -->
+        <div class="search bar">
+            <div class="search" role="search">
+            <input type="text" placeholder="Search..." aria-label="Search" />
+            <i class="fas fa-search"></i>
+            </div>
+            <button id="darkModeToggle" aria-label="Toggle dark mode">
+            <div class="toggle-circle"></div>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobileMenuBtn" aria-label="Open mobile menu">
+            <i class="fas fa-bars " aria-hidden="true"></i>
+        </button>
+        </div>
+        <!-- Mobile Menu -->
+         
+        <div id="mobileMenu" aria-hidden="true">
+            <div class="mobile nav">
+                <a href="#home">Home</a>
+                <a href="#services">Services</a>
+                <a href="#blog">Blog</a>
+                <a href="#appointment">Appointment</a>
+                <a href="#contact">Contact</a>
+                
+                
+                
+                <div class="mobile-dark-mode">
+                    <span>Dark Mode</span>
+                    <button id="mobileDarkModeToggle" aria-label="Toggle dark mode on mobile">
+                        <div class="toggle-circle"></div>
+                    </button>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section id="home">
+        <div class="container">
+            <div class="hero-content">
+            <h1>Begin Your Journey To <span class="text-primary-DEFAULT">Wellness</span> Today</h1>
+            <p>Discover a balanced approach to health that nurtures your body, mind, and spirit. Our personalized wellness plans are designed to help you achieve lasting results.</p>
+            <a href="#services" class="btn">Start Your Journey</a>
+            </div>
+            <div class="hero-image">
+            <img src="https://cdn.pixabay.com/photo/2017/03/26/21/54/yoga-2176668_1280.jpg" alt="Woman in yoga pose representing wellness and health" />
+            </div>
+        </div>
+        </section>
+
+        <!-- Featured Services Section -->
+        <section id="services">
+        <div class="container">
+            <div class="featured-services">
+            <h2>Our Services</h2>
+            <p>We offer a comprehensive approach to wellness with services tailored to your unique needs and goals.</p>
+            </div>
+            <div class="grid">
+            <!-- Nutrition Service -->
+            <div class="nutrition-service">
+                <div><i class="fas fa-apple-alt"></i></div>
+                <h3>Nutrition</h3>
+                <p>Personalized meal plans and dietary guidance to fuel your body the right way.</p>
+            </div>
+            <!-- Fitness Service -->
+            <div class="fitness-service">
+                <div><i class="fas fa-dumbbell"></i></div>
+                <h3>Fitness</h3>
+                <p>Custom workout programs designed to meet your fitness level and goals.</p>
+            </div>
+            <!-- Mental Health Service -->
+            <div class="mental-health-service">
+                <div><i class="fas fa-brain"></i></div>
+                <h3>Mental Health</h3>
+                <p>Mindfulness practices and stress management techniques for mental wellbeing.</p>
+            </div>
+            <!-- Wellness Tips Service -->
+            <div class="wellness-tips-service">
+                <div><i class="fas fa-lightbulb"></i></div>
+                <h3>Wellness Tips</h3>
+                <p>Practical advice and holistic approaches to enhance your daily wellness routine.</p>
+            </div>
+            </div>
+        </div>
+        </section>
+
+        <!-- Blog Preview Section -->
+        <section id="blog">
+        <div class="container">
+            <div class="blog-tag">
+            <h2>Latest Articles</h2>
+            <p>Stay updated with the newest trends and insights in health and wellness.</p>
+            </div>
+            <div class="blog-posts">
+            <!-- Blog Post 1 -->
+            <article class="blog-post1">
+                <img src="images/photo-1512438248247-f0f2a5a8b7f0.jpg" alt="Group of people doing meditation" />
+                <div class="text">
+                <span>Mindfulness</span>
+                <h3>The Science Behind Meditation and Mental Clarity</h3>
+                <p class="line-clamp-2">Discover the neuroscience of meditation and how just 10 minutes daily can transform your mental performance and emotional wellbeing.</p>
+                <a href="javascript:void(0)" class="read-more">Read more <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+            <!-- Blog Post 2 -->
+            <article class="blog-post2">
+                <img src="images/photo-1610348718584-07f43528231d.jpg" alt="Fresh fruits and vegetables on a table" />
+                <div class="text">
+                <span>Nutrition</span>
+                <h3>Superfoods: Separating Fact from Fiction</h3>
+                <p class="line-clamp-2">An evidence-based look at so-called superfoods and how to incorporate nutrient-dense options into your everyday meals.</p>
+                <a href="javascript:void(0)" class="read-more">Read more <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+            <!-- Blog Post 3 -->
+            <article class="blog-post3">
+                <img src="images/photo-1434682881908-b43d0467b798.jpg" alt="Woman stretching before exercise" />
+                <div class="text">
+                <span>Fitness</span>
+                <h3>Why Recovery Is Just as Important as Exercise</h3>
+                <p class="line-clamp-2">Learn how proper recovery techniques can enhance performance, prevent injury, and lead to better fitness results long-term.</p>
+                <a href="javascript:void(0)" class="read-more">Read more <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+            </div>
+            <div style="margin-top: 1rem; text-align: center;">
+            <a href="javascript:void(0)" class="btn">View All Articles</a>
+            </div>
+        </div>
+        </section>
+
+        <!-- Appointment Section -->
+        <section id="appointment">
+            <div class="container">
+                <section class="hero">
+                    <div class="badge">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Easy Online Booking</span>
+                    </div>
+                    <h1>Book Your Appointment</h1>
+                    <p>Take the first step towards better health. Schedule your consultation with our expert team.</p>
+                </section>
+
+                <!-- Booking Form -->
+                <section class="form-section">
+                    <div class="form-container">
+                        <form id="appointmentForm">
+                            <h3><i class="fas fa-user"></i> Personal Information</h3>
+                            <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">First Name *</label>
+                                <input type="text" id="firstName" name="firstName" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name *</label>
+                                <input type="text" id="lastName" name="lastName" required />
+                            </div>
+                            </div>
+
+                            <h3><i class="fas fa-envelope"></i> Contact Information</h3>
+                            <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" name="email" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number *</label>
+                                <input type="tel" id="phone" name="phone" required />
+                            </div>
+                            </div>
+
+                            <h3><i class="fas fa-calendar-day"></i> Appointment Details</h3>
+                            <div class="form-group">
+                                <label for="service">Service Type *</label>
+                                <select id="service" name="service" required>
+                                    <option value="">Select a service</option>
+                                    <option>Nutrition Counseling</option>
+                                    <option>Fitness Training</option>
+                                    <option>Mental Health Support</option>
+                                    <option>Preventive Care</option>
+                                    <option>Family Wellness</option>
+                                    <option>Holistic Wellness</option>
+                                </select>
+                            </div>
+                            <div class="form-row">
+                            <div class="form-group">
+                                <label for="date">Preferred Date *</label>
+                                <input type="date" id="date" name="date" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="time">Preferred Time *</label>
+                                <select id="time" name="time" required>
+                                <option value="">Select a time</option>
+                                <option>9:00 AM</option>
+                                <option>10:00 AM</option>
+                                <option>11:00 AM</option>
+                                <option>12:00 PM</option>
+                                <option>1:00 PM</option>
+                                <option>2:00 PM</option>
+                                <option>3:00 PM</option>
+                                <option>4:00 PM</option>
+                                <option>5:00 PM</option>
+                                </select>
+                            </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message">Additional Message (Optional)</label>
+                                <textarea id="message" name="message" rows="4"></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <button type="submit"><i class="fas fa-check-circle"></i> Book Appointment</button>
+                            </div>
+                            <p class="terms">By booking an appointment, you agree to our terms and conditions. We'll contact you within 24 hours to confirm.</p>
+                        </form>
+                    </div>
+                </section>
+            </div>
+                
+        </section>
+
+        <!-- Testimonial Section -->
+        <section class="grid">
+        <div class="container">
+            <div style="text-align:center; margin-bottom: 1.25rem;">
+            <h2>What Our Clients Say</h2>
+            <p style="color: var(--muted);">Hear from people who have transformed their lives with WellnessHub.</p>
+            </div>
+            <div class="testimonial-slider" aria-live="polite">
+            <!-- Slider viewport -->
+            <div id="testimonialSlider">
+                <div id="testimonialWrapper">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-slide">
+                    <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>"The personalized nutrition plan from WellnessHub has completely transformed my relationship with food. I have more energy, better sleep, and finally reached my health goals."</p>
+                    <div class="testimonial-person">
+                        <img src="https://cdn.pixabay.com/photo/2016/11/18/19/07/happy-1836445_1280.jpg" alt="Sarah J." />
+                        <div class="testimonial-info">
+                        <h4>Sarah J.</h4>
+                        <p>Nutrition Program Client</p>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <!-- Testimonial 2 -->
+                <div class="testimonial-slide">
+                    <div class="testimonial-card2">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>"After struggling with stress and anxiety for years, the mindfulness techniques I learned through WellnessHub have been life-changing. I feel more present and at peace."</p>
+                    <div class="testimonial-person">
+                        <img src="https://cdn.pixabay.com/photo/2016/11/21/12/42/beard-1845166_1280.jpg" alt="Michael T." />
+                        <div class="testimonial-info">
+                        <h4>Michael T.</h4>
+                        <p>Mental Wellness Member</p>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <!-- Testimonial 3 -->
+                <div class="testimonial-slide">
+                    <div class="testimonial-card3">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p>"The fitness program designed for me was exactly what I needed. My trainer understood my limitations and helped me build strength gradually. I'm now doing things I never thought possible!"</p>
+                    <div class="testimonial-person">
+                        <img src="https://cdn.pixabay.com/photo/2018/01/15/07/51/woman-3083377_1280.jpg" alt="Elena R." />
+                        <div class="testimonial-info">
+                        <h4>Elena R.</h4>
+                        <p>Fitness Program Client</p>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <!-- Testimonial Navigation -->
+            <div class="testimonial-nav">
+                <button id="prevTestimonial" aria-label="Previous testimonial">
+                <i class="fas fa-chevron-left"></i>
+                </button>
+                <button id="nextTestimonial" aria-label="Next testimonial">
+                <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            </div>
+        </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+        <div class="container">
+            <div class="contact-header">
+            <h2>Get in Touch</h2>
+            <p>Have questions or ready to start your wellness journey? We're here to help.</p>
+            </div>
+            <div class="grid">
+            <!-- Contact Form -->
+            <div class="contact-form">
+                <h3>Send us a message</h3>
+                <form id="contactForm">
+                <div class="mb-4">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" name="name" aria-label="Your name" required />
+                </div>
+                <div class="mb-4">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" aria-label="Your email address" required />
+                </div>
+                <div class="mb-4">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="4" aria-label="Your message" required></textarea>
+                </div>
+                <button type="submit" class="btn">Send Message</button>
+                </form>
+            </div>
+
+            <!-- Contact Information and Map -->
+            <div class="section-fade">
+                <div class="contact-info">
+                <h3>Contact Information</h3>
+                <div>
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                    <h4 style="margin:0 0 0.25rem">Email</h4>
+                    <p style="margin:0">info@wellnesshub.com</p>
+                    </div>
+                </div>
+                <div>
+                    <i class="fas fa-phone"></i>
+                    <div>
+                    <h4 style="margin:0 0 0.25rem">Phone</h4>
+                    <p style="margin:0">+1 (555) 123-4567</p>
+                    </div>
+                </div>
+                <div>
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                    <h4 style="margin:0 0 0.25rem">Location</h4>
+                    <p style="margin:0">123 Wellness Street, Healthy City, HC 10001</p>
+                    </div>
+                </div>
+                </div>
+                <!-- Map -->
+                <div class="map-container" style="margin-top: 1rem;">
+                <iframe class="w-full h-full" title="Map showing our location" frameborder="0" loading="lazy"
+                    src="https://www.openstreetmap.org/export/embed.html?bbox=-74.00%2C40.70%2C-73.90%2C40.80&amp;layer=mapnik"></iframe>
+                </div>
+            </div>
+            </div>
+        </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+        <div>
+            <!-- Logo and Brief Description -->
+            <div>
+            <a href="#home" class="flex items-center">
+                <i class="fas fa-leaf"></i>
+                <span style="font-weight:600; margin-left: 0.4rem;">WellnessHub</span>
+            </a>
+            <p style="margin-top: 0.6rem;">Your holistic approach to health and wellness, offering personalized programs for mind, body, and spirit.</p>
+            <div class="social-icons">
+                <a href="javascript:void(0)" aria-label="Follow us on Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="javascript:void(0)" aria-label="Follow us on Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="javascript:void(0)" aria-label="Follow us on Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="javascript:void(0)" aria-label="Follow us on YouTube"><i class="fab fa-youtube"></i></a>
+            </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div>
+            <h3>Quick Links</h3>
+            <ul class="quick-links">
+                <li><a href="#home" class="footer-link">Home</a></li>
+                <li><a href="#services" class="footer-link">Services</a></li>
+                <li><a href="#blog" class="footer-link">Blog</a></li>
+                <li><a href="#appointment" class="footer-link">Appointment</a></li>
+                <li><a href="#contact" class="footer-link">Contact</a></li>
+            </ul>
+            </div>
+
+            <!-- Services -->
+            <div>
+            <h3>Our Services</h3>
+            <ul class="service-links">
+                <li><a href="javascript:void(0)" class="footer-link">Nutrition Planning</a></li>
+                <li><a href="javascript:void(0)" class="footer-link">Fitness Programs</a></li>
+                <li><a href="javascript:void(0)" class="footer-link">Mental Wellness</a></li>
+                <li><a href="javascript:void(0)" class="footer-link">Holistic Health</a></li>
+            </ul>
+            </div>
+
+            <!-- Newsletter -->
+            <div>
+            <h3>Subscribe to Our Newsletter</h3>
+            <p>Get the latest wellness tips and updates delivered to your inbox.</p>
+            <form id="newsletterForm" class="flex" onsubmit="return false;" style="display:flex; align-items:center; margin-top: 0.5rem;">
+                <input type="email" placeholder="Your Email" aria-label="Your email for newsletter" class="newsletter-input" />
+                <button type="submit" class="newsletter-btn">Subscribe</button>
+            </form>
+            </div>
+        </div>
+
+        <div class="policies">
+            <p>&copy; 2025 WellnessHub. All rights reserved.</p>
+            <div class="footer-links">
+            <a href="javascript:void(0)" class="footer-link">Privacy Policy</a>
+            <a href="javascript:void(0)" class="footer-link">Terms of Service</a>
+            <a href="javascript:void(0)" class="footer-link">Cookies</a>
+            </div>
+        </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script id="app-script">
+            
+        // Gate functionality with localStorage
+        document.addEventListener('DOMContentLoaded', function() {
+            // 1. AUTHENTICATION SYSTEM
+            const loginGate = document.getElementById('loginGate');
+            const gateForm = document.getElementById('gateLoginForm');
+            const guestLink = document.getElementById('gateGuest');
+            
+            // Check auth state
+            const isAuthenticated = localStorage.getItem('wellnessHubAuth') === 'true';
+            const isGuest = localStorage.getItem('wellnessHubGuest') === 'true';
+            
+            // Show gate if not authenticated or guest
+            if (!isAuthenticated && !isGuest) {
+                document.body.classList.add('gate-active');
+                loginGate.style.display = 'flex';
+            }
+
+            // Login form submission
+            gateForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const email = document.getElementById('gateEmail').value;
+                const password = document.getElementById('gatePassword').value;
+
+                if (!email || !password) {
+                    alert('Please fill in all fields');
+                    return;
+                }
+
+                // Simulate API call
+                const submitBtn = this.querySelector('button[type="submit"]');
+                const originalText = submitBtn.innerHTML;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Signing in...';
+                submitBtn.disabled = true;
+
+                setTimeout(() => {
+                    // Store auth state
+                    localStorage.setItem('wellnessHubAuth', 'true');
+                    localStorage.setItem('wellnessHubUserEmail', email);
+                    
+                    // Hide gate
+                    document.body.classList.remove('gate-active');
+                    loginGate.style.display = 'none';
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                }, 1500);
+            });
+
+            // Guest access
+            guestLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                localStorage.setItem('wellnessHubGuest', 'true');
+                document.body.classList.remove('gate-active');
+                loginGate.style.display = 'none';
+            });
+
+            //  DARK MODE TOGGLE WITH LOCALSTORAGE
+            const toggleDarkMode = function() {
+                const isDark = document.documentElement.classList.toggle('dark');
+                localStorage.setItem('wellnessHubTheme', isDark ? 'dark' : 'light');
+            };
+
+            // Initialize theme
+            function initTheme() {
+                const savedTheme = localStorage.getItem('wellnessHubTheme');
+                const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                
+                if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+                    document.documentElement.classList.add('dark');
+                }
+            }
+            initTheme();
+
+            // Event listeners for theme toggles
+            document.getElementById('darkModeToggle').addEventListener('click', toggleDarkMode);
+            document.getElementById('mobileDarkModeToggle').addEventListener('click', toggleDarkMode);
+
+            //  MOBILE MENU WITH STATE SAVING
+            // Mobile Menu Toggle
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenuBtn.addEventListener('click', function () {
+                const isOpen = mobileMenu.getAttribute('aria-hidden') === 'false';
+                mobileMenu.setAttribute('aria-hidden', isOpen ? 'true' : 'false');
+                mobileMenu.style.display = isOpen ? 'none' : 'block';
+                mobileMenuBtn.setAttribute('aria-expanded', !isOpen);
+                mobileMenuBtn.querySelector('i').classList.toggle('fa-bars', isOpen);
+                mobileMenuBtn.querySelector('i').classList.toggle('fa-times', !isOpen);
+
+            })
+
+            // Initialize mobile menu state
+            const menuWasOpen = localStorage.getItem('wellnessHubMobileMenuOpen') === 'true';
+            if (menuWasOpen) {
+                mobileMenu.classList.add('active');
+                mobileMenu.setAttribute('aria-hidden', 'false');
+                mobileMenuBtn.setAttribute('aria-expanded', 'true');
+                mobileMenuBtn.querySelector('i').classList.add('fa-times');
+                mobileMenuBtn.querySelector('i').classList.remove('fa-bars');
+            } 
+            
+
+
+            // 4. FORM DATA PERSISTENCE
+            const appointmentForm = document.getElementById('appointmentForm');
+            const appointmentFields = ['firstName', 'lastName', 'email', 'phone', 'service', 'date', 'time', 'message'];
+
+            // Load saved form data
+            function loadFormData() {
+                const savedData = JSON.parse(localStorage.getItem('wellnessHubAppointmentForm')) || {};
+                appointmentFields.forEach(field => {
+                    const element = document.getElementById(field);
+                    if (element && savedData[field]) {
+                        element.value = savedData[field];
+                    }
+                });
+            }
+            loadFormData();
+
+            // Save form data as user types
+            function saveFormData() {
+                const formData = {};
+                appointmentFields.forEach(field => {
+                    const element = document.getElementById(field);
+                    if (element) {
+                        formData[field] = element.value;
+                    }
+                });
+                localStorage.setItem('wellnessHubAppointmentForm', JSON.stringify(formData));
+            }
+
+            // Add event listeners to form fields
+            appointmentFields.forEach(field => {
+                const element = document.getElementById(field);
+                if (element) {
+                    element.addEventListener('input', saveFormData);
+                }
+            });
+
+            // Clear saved data on successful submission
+            appointmentForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Validate all fields
+                let isValid = true;
+                const requiredFields = this.querySelectorAll('[required]');
+                
+                requiredFields.forEach(field => {
+                    if (!field.value.trim()) {
+                        field.classList.add('invalid');
+                        isValid = false;
+                    } else {
+                        field.classList.remove('invalid');
+                    }
+                });
+
+                if (isValid) {
+                    // Show loading state
+                    const submitBtn = this.querySelector('button[type="submit"]');
+                    const originalText = submitBtn.innerHTML;
+                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+                    submitBtn.disabled = true;
+
+                    // Simulate API call
+                    setTimeout(() => {
+                        alert('Your appointment has been booked successfully!');
+                        this.reset();
+                        localStorage.removeItem('wellnessHubAppointmentForm');
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.disabled = false;
+                    }, 1500);
+                }
+            });
+
+            // 5. NEWSLETTER SUBSCRIPTION
+            const newsletterForm = document.getElementById('newsletterForm');
+            const newsletterInput = newsletterForm.querySelector('input[type="email"]');
+
+            // Check if already subscribed
+            if (localStorage.getItem('wellnessHubNewsletterSubscribed')) {
+                newsletterInput.placeholder = "You're already subscribed!";
+                newsletterInput.disabled = true;
+                newsletterForm.querySelector('button').disabled = true;
+            }
+
+            newsletterForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const email = newsletterInput.value;
+                
+                if (!email) {
+                    alert('Please enter your email');
+                    return;
+                }
+                
+                // Simulate subscription
+                const subscribeBtn = this.querySelector('button[type="submit"]');
+                const originalText = subscribeBtn.innerHTML;
+                subscribeBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+                subscribeBtn.disabled = true;
+
+                setTimeout(() => {
+                    localStorage.setItem('wellnessHubNewsletterSubscribed', 'true');
+                    localStorage.setItem('wellnessHubNewsletterEmail', email);
+                    newsletterInput.value = '';
+                    newsletterInput.placeholder = "Thank you for subscribing!";
+                    newsletterInput.disabled = true;
+                    subscribeBtn.innerHTML = originalText;
+                    alert('Successfully subscribed to our newsletter!');
+                }, 1000);
+            });
+
+            // 6. TESTIMONIAL SLIDER POSITION MEMORY
+            const testimonialWrapper = document.getElementById('testimonialWrapper');
+            const prevButton = document.getElementById('prevTestimonial');
+            const nextButton = document.getElementById('nextTestimonial');
+            const slides = testimonialWrapper.children;
+            let currentSlide = parseInt(localStorage.getItem('wellnessHubTestimonialSlide')) || 0;
+
+            function updateSlider() {
+                testimonialWrapper.style.transform = `translateX(-${currentSlide * 100}%)`;
+                localStorage.setItem('wellnessHubTestimonialSlide', currentSlide.toString());
+            }
+
+            prevButton.addEventListener('click', function() {
+                currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+                updateSlider();
+            });
+
+            nextButton.addEventListener('click', function() {
+                currentSlide = (currentSlide + 1) % slides.length;
+                updateSlider();
+            });
+
+            // Initialize slider position
+            updateSlider();
+
+            // Auto-advance testimonials
+            let slideInterval = setInterval(function() {
+                currentSlide = (currentSlide + 1) % slides.length;
+                updateSlider();
+            }, 5000);
+
+            testimonialWrapper.addEventListener('mouseenter', function() {
+                clearInterval(slideInterval);
+            });
+
+            testimonialWrapper.addEventListener('mouseleave', function() {
+                slideInterval = setInterval(function() {
+                    currentSlide = (currentSlide + 1) % slides.length;
+                    updateSlider();
+                }, 5000);
+            });
+
+            // SECTION FADE ANIMATIONS (existing code)
+            const sections = document.querySelectorAll('.section-fade');
+            const observerOptions = { threshold: 0.15 };
+            const observer = new IntersectionObserver(function(entries, observer) {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+            sections.forEach((section) => observer.observe(section));
+
+            // SMOOTH SCROLLING (existing code)
+            document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+                anchor.addEventListener('click', function(e) {
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        e.preventDefault();
+                        const headerOffset = 80;
+                        const elementPosition = target.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                        window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                        
+                        // Close mobile menu if open
+                        if (mobileMenu.classList.contains('active')) {
+                            mobileMenu.classList.remove('active');
+                            mobileMenu.setAttribute('aria-hidden', 'true');
+                            mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                            mobileMenuBtn.querySelector('i').classList.add('fa-bars');
+                            mobileMenuBtn.querySelector('i').classList.remove('fa-times');
+                            localStorage.setItem('wellnessHubMobileMenuOpen', 'false');
+                        }
+                    }
+                });
+            });
+            
+            // CONTACT FORM SUBMISSION 
+            document.getElementById('contactForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const submitBtn = this.querySelector('button[type="submit"]');
+                const originalText = submitBtn.innerHTML;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+                submitBtn.disabled = true;
+                
+                setTimeout(() => {
+                    alert('Message sent successfully!');
+                    this.reset();
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                }, 1500);
+            });
+        });
+    </script>
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbyJJ8KldLX13BzF1aSt2_dmlG3no8nlyVL-69-dH2sQsNkJuN7WTUBGHR2eAoCchAuHGA/exec'
+        const form = document.forms['submit-to-google-sheet']
+        const msg = document.getElementById("msg")
+
+        form.addEventListener('submit', e => {
+        e.preventDefault()
+        fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+       .then(response => {
+        msg.innerHTML = "Message sent successfully"
+        setTimeout(function(){
+            msg.innerHTML =""
+        }, 5000);
+        form.reset()
+        })
+       .catch(error => console.error('Error!', error.message))
+        })
+    </script>
+</body>
+</html>

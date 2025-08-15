@@ -1,0 +1,98 @@
+# WellnessHub – Fully Styled, Plug-and-Play HTML
+
+This project is a complete, responsive, and accessible **WellnessHub** landing page with dark mode, mobile navigation, testimonial slider, search functionality, and a modal popup for starting your journey.
+
+
+## Features
+- 🌗 **Dark Mode Toggle** with smooth transitions
+- 📱 **Mobile Navigation Menu**
+- 🔍 **Search Filtering** for blog posts/services
+- 💬 **Testimonial Slider**
+- 📍 **Contact Section** with embedded Google Map
+- 📝 **Modal Form** for “Start Your Journey” CTA
+- ⚡ Fully responsive and accessible
+
+## Database Design
+While this HTML template is front-end only, here’s a suggested relational database schema if you integrate it with a backend:
+```
+Users
+- id (PK)
+- name
+- email
+- password_hash
+- created_at
+
+BlogPosts
+- id (PK)
+- title
+- content
+- author_id (FK -> Users.id)
+- created_at
+
+Services
+- id (PK)
+- name
+- description
+- price
+- created_at
+
+Testimonials
+- id (PK)
+- user_id (FK -> Users.id)
+- content
+- rating
+- created_at
+```
+
+## Technology Stack (Suggested)
+- **Frontend:** HTML5, CSS3, JavaScript 
+- **Icons:** Font Awesome
+- **Fonts:** Google Fonts – Poppins
+- **Backend (Optional):** Laravel / Node.js + Express
+- **Database (Optional):** MySQL / MongoDB
+- **Hosting:** Netlify / Vercel / cPanel Hosting /github
+
+## UI Screenshots (Descriptions)
+1. **Hero Section:** A full-width background image with a centered heading, short tagline, and the “Start Your Journey” button.
+2. **Services Grid:** Three neatly aligned cards, each with a colored icon at the top, a bold service title, and short description text.
+3. **Testimonials Slider:** Horizontal carousel of client feedback with profile images, names, star ratings, and their written testimonials.
+4. **Blog Section:** Grid layout of blog article cards with featured images, titles, and preview text, alongside a search bar at the top.
+5. **Contact Form:** Clean two-column section with a contact form on one side and an embedded Google Map on the other.
+6. **Dark Mode Preview:** Shows the entire UI in dark mode with smooth transitions and readable contrast.
+
+*(Screenshots to be added when deployed)*
+
+## Testing Logs
+| Test Case | Steps | Expected Result | Status |
+|-----------|-------|-----------------|--------|
+| Dark Mode Toggle | Click sun/moon icon | Smooth color transition | ✅ Pass |
+| Mobile Nav Menu | Resize to mobile, click hamburger | Menu slides in/out | ✅ Pass |
+| Search Filter | Type in search bar | Filters visible cards | ✅ Pass |
+| Modal Popup | Click “Start Your Journey” | Modal appears with form | ✅ Pass |
+
+## Project Reflection
+This project successfully merges multiple UI/UX features into a single lightweight HTML page without dependencies on build tools. It can be easily extended into a full-stack web application by integrating a backend and database. The main challenge was ensuring dark mode styles applied uniformly across all UI components and maintaining accessibility in modals and sliders. Future improvements could include form validation, animations on scroll, and API integration for live data.
+
+## How to Use
+1. **Download the `index.html` file**
+2. Open in any modern browser — no build tools required
+3. Toggle dark mode via the sun/moon icon
+4. On mobile, tap the menu icon for navigation
+5. Click **Start Your Journey** to open the modal form
+6. Modify text, images, or colors in the HTML/CSS to suit your brand
+
+## File Structure
+```
+project-folder/
+│
+├── index.html     # Main HTML file (all styles & scripts inline)
+└── README.md      # This file
+```
+
+## Customization
+- **Colors:** Adjust CSS variables under the `:root` selector
+- **Fonts:** Change Google Fonts link in the `<head>`
+- **Images:** Replace placeholder images with your own assets
+
+## License
+This template is provided free for personal and commercial use. Attribution is appreciated but not required.
